@@ -37,9 +37,10 @@ class StudentList
   end
 
   def sorted_students
-  	@students.sort!
+  	@students.sort { |student_first_name.view_student_first_name, student_first_name.view_student_first_name| student_first_name.view_student_first_name <=> student_first_name.view_student_first_name }
   	
   end
+
 end
 
 #student_list.cohort = "march"     #is setting the cohort attribute of student list instance
