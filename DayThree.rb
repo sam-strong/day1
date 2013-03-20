@@ -10,17 +10,20 @@ class StudentList
   def initialize(cohort)
   	@cohort = cohort
   	@students = []
+  	
   	puts "#{cohort} student list has been created"
   end
 
   def add(student)
   	@students << student
-    puts "#{student} has been added"
+  	
+    #puts "#{student} has been added"
   end
 
   def remove(student)
+  	
   	@students.delete(student)
-  	puts "#{student} has been removed"
+  	#puts "#{student} has been removed"
   end
 
   def view_cohort_name
@@ -28,34 +31,25 @@ class StudentList
   end
 
   def view_students
-  	@students
+  	@students.map do |student|
+  	  student.student_as_string
+  	end
   end
 
-  def sort
+  def sorted_students
   	@students.sort!
+  	
   end
 end
 
-march_list = StudentList.new("march")
-
 #student_list.cohort = "march"     #is setting the cohort attribute of student list instance
 #puts student_list.cohort          #getting cohort attribute of student list instance
-march_list.add ("zahid")
-march_list.add ("sam")
 
-puts march_list.view_cohort_name
-
-puts march_list.view_students
-
-puts march_list.sort
-
-march_list.remove ("zahid")
-
-puts march_list.view_students
 
 class Student
-	def initialize (student_name)
-		@student_name = student_name
+	def initialize (student_first_name, student_last_name)
+		@student_first_name = student_first_name
+		@student_last_name = student_last_name
 		@languages = []
 		@one_rep_max = 0
 	end
@@ -80,10 +74,41 @@ class Student
     	@one_rep_max
     end
 
-    def view_student_name
-    	@student_name
+    def view_student_first_name
+    	@student_first_name
     end
 
+    def view_student_last_name
+    	@student_last_name
+    end
+
+    def student_as_string
+    	student_output = [@student_first_name, @student_last_name, @languages, @one_rep_max].to_s
+    	student_output
+    end
 end
 
- 
+march_list = StudentList.new("march")
+
+student_sam = Student.new("sam", "strong")
+student_bob = Student.new("bob", "smith")
+student_zob = Student.new("zob", "smith")
+
+march_list.add(student_sam)
+march_list.add(student_bob)
+march_list.add(student_zob)
+
+puts march_list.view_cohort_name
+
+#puts march_list.view_students
+
+puts march_list.sorted_students
+
+#march_list.remove(student_bob.view_student_name)
+
+puts march_list.view_students
+
+#puts student_bob.view_one_rep_max
+
+#puts student_sam.view_student_first_name
+#puts ["something", "somththing else", ["in array","more in array"],"out inner array", 4]
